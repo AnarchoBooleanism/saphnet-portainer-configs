@@ -1,0 +1,52 @@
+services:
+  guacdb:
+    container_name: guacamoledb
+    image: mariadb:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 'guacamole_db'
+      MYSQL_USER: 'guacamole_user'
+    volumes:
+      - 'guac-db-data:/var/lib/mysql'
+    networks:
+      - web_bridge
+    env_file:
+      - guacamole.env
+    # Secret environment variables to set:
+    # MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD
+
+  guacd:
+    container_name: guacd
+    image: guacamole/guacd:latest
+    restart: unless-stopped
+    networks:
+      - web_bridge
+
+  guacamole:
+    container_name: guacamole
+    image: guacamole/guacamole:latest
+    restart: unless-stopped
+    networks:
+      - web_bridge
+    ports:
+      - 8080:8080
+    environment:
+      GUACD_HOSTNAME: "guacd"
+      MYSQL_HOSTNAME: "guacdb"
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_USER: "guacamole_user"
+#      TOTP_ENABLED: "true"
+    depends_on:
+      - guacdb
+      - guacd
+    env_file:
+      - guacamole.env
+    # Secret environment variables to set:
+    # MYSQL_PASSWORD
+
+volumes:
+  guac-db-data:
+
+networks:
+  web_bridge:
+    name: web_bridge

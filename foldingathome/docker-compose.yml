@@ -1,0 +1,29 @@
+services:
+  foldingathome:
+    image: lscr.io/linuxserver/foldingathome:latest
+    container_name: foldingathome
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - MACHINE_NAME=debian-docker-vm-main
+      - CLI_ARGS= #optional
+    volumes:
+      - foldingathome:/config # /home/docker-vm-user/foldingathome/config:/config
+    ports:
+      - 7396:7396 #optional
+    devices:
+      - /dev/dri/:/dev/dri/
+    deploy:
+      resources:
+        limits:
+          cpus: '3.2'
+    restart: unless-stopped
+    env_file:
+      - foldingathome.env
+    # Secret environment variables to set:
+    # ACCOUNT_TOKEN
+
+volumes:
+  foldingathome:
+    external: true

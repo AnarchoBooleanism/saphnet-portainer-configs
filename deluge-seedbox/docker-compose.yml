@@ -1,0 +1,75 @@
+services:
+  # vpn:
+  #   image: tailscale/tailscale:latest
+  #   container_name: vpn
+  #   environment:
+  #     - TS_AUTHKEY=XXX
+  #     - TS_EXTRA_ARGS=--exit-node=XXX
+  #     - TS_STATE_DIR=/var/lib/tailscale
+  #     - TS_USERSPACE=false
+  #     - TS_HOSTNAME=deluge-seedbox
+  #   ports:
+  #     - 8112:8112
+  #     - 58846:58846
+  #   volumes:
+  #     - tailscale-config:/var/lib/tailscale
+  #   devices:
+  #     - /dev/net/tun:/dev/net/tun
+  #   cap_add:
+  #     - net_admin
+  #   restart: unless-stopped
+  vpn:
+    image: ghcr.io/bubuntux/nordvpn:latest
+    container_name: vpn
+    cap_add:
+      - NET_ADMIN               # Required
+      - NET_RAW                 # Required
+    environment:                # Review https://github.com/bubuntux/nordvpn#environment-variables
+      - TECHNOLOGY=NordLynx
+      - NETWORK=192.168.0.0/16  # So it can be accessed within the local network
+    ports:
+      - 8112:8112
+      - 58846:58846
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1  # Recomended if using ipv4 only
+    restart: unless-stopped
+    env_file:
+      - seedbox.env
+    # Secret environment variables to set:
+    # TOKEN, CONNECT
+
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - DELUGE_LOGLEVEL=error
+    volumes:
+      - deluge-config:/config
+      - seedbox-files:/seedbox-data
+    restart: unless-stopped
+    network_mode: container:vpn
+    depends_on:
+      - vpn
+
+  deluge-sftp:
+    image: emberstack/sftp
+    container_name: deluge-sftp
+    volumes:
+      - sftp-config:/app/config
+      - seedbox-files:/home/seedbox/sftp
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+
+volumes:
+  # tailscale-config:
+  deluge-config:
+  sftp-config:
+  seedbox-files:
+    driver_opts:
+      type: "nfs"
+      o: "addr=nas1.int-net.saphnet.xyz,nolock,soft,rw,nfsvers=4"
+      device: ":/mnt/saphnet-nas1b/media-server/deluge"
