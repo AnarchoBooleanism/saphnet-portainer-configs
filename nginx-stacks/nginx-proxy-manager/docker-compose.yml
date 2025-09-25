@@ -25,7 +25,8 @@ services:
     networks:
       - web_bridge
     env_file:
-      - stack.env
+      - path: stack.env
+        required: false
     # Secret environment variables to set:
     # DB_MYSQL_PASSWORD
 
@@ -41,7 +42,8 @@ services:
     networks:
       - web_bridge
     env_file:
-      - stack.env
+      - path: stack.env
+        required: false
     # Secret environment variables to set:
     # MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD
 

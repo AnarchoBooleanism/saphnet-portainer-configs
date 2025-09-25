@@ -30,7 +30,8 @@ services:
       - web_bridge
     restart: unless-stopped
     env_file:
-      - homepage.env
+      - path: stack.env
+        required: false
     # Secret environment variables to set are listed in the `saphnet-homepage` repo.
 
 volumes:

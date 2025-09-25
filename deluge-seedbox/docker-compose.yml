@@ -34,7 +34,8 @@ services:
       - net.ipv6.conf.all.disable_ipv6=1  # Recomended if using ipv4 only
     restart: unless-stopped
     env_file:
-      - stack.env
+      - path: stack.env
+        required: false
     # Secret environment variables to set:
     # TOKEN, CONNECT
 
