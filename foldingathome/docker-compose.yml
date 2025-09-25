@@ -8,6 +8,8 @@ services:
       - TZ=America/Los_Angeles
       - MACHINE_NAME=debian-docker-vm-main
       - CLI_ARGS= #optional
+      # Secrets to set in environment:
+      - ACCOUNT_TOKEN=$ACCOUNT_TOKEN
     volumes:
       - foldingathome:/config
     ports:
@@ -19,11 +21,6 @@ services:
         limits:
           cpus: '3.2'
     restart: unless-stopped
-    env_file:
-      - path: stack.env
-        required: false
-    # Secret environment variables to set:
-    # ACCOUNT_TOKEN
 
 volumes:
   foldingathome:
