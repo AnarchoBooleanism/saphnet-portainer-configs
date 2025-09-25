@@ -1,7 +1,7 @@
 services:
-  dockerproxy:
+  docker-proxy:
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
-    container_name: dockerproxy
+    container_name: docker-proxy
     environment:
       - CONTAINERS=1 # Allow access to viewing containers
       - SERVICES=1 # Allow access to viewing services (necessary when using Docker Swarm)
@@ -25,7 +25,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
     depends_on:
-      - dockerproxy
+      - docker-proxy
     networks:
       - web_bridge
     restart: unless-stopped
