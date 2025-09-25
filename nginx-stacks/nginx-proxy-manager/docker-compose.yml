@@ -14,11 +14,10 @@ services:
       - DB_MYSQL_HOST=db
       - DB_MYSQL_PORT=3306
       - DB_MYSQL_USER=npm
+      - DB_MYSQL_PASSWORD="MariaDBUserPass"
       - DB_MYSQL_NAME=npm
       # Uncomment this if IPv6 is not enabled on your host
       # - DISABLE_IPV6='true'
-      # Secrets to set in environment:
-      - DB_MYSQL_PASSWORD=$MYSQL_PASSWORD
     volumes:
       - data:/data
       - letsencrypt:/etc/letsencrypt
@@ -31,12 +30,11 @@ services:
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: "npm"
-      MYSQL_USER: "npm"
-      MARIADB_AUTO_UPGRADE: "1"
-      # Secrets to set in environment:
-      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD=MariaDBRootPass
+      - MYSQL_DATABASE=npm
+      - MYSQL_USER=npm
+      - MYSQL_PASSWORD=MariaDBUserPass
+      - MARIADB_AUTO_UPGRADE=1
     volumes:
       - mysql:/var/lib/mysql
     networks:
