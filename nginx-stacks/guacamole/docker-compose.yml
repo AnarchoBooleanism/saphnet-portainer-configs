@@ -4,11 +4,10 @@ services:
     image: mariadb:latest
     restart: unless-stopped
     environment:
+      - MYSQL_ROOT_PASSWORD=MariaDBRootPass
       - MYSQL_DATABASE=guacamole_db
       - MYSQL_USER=guacamole_user
-      # Secrets to set in environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_PASSWORD=MariaDBUserPass
     volumes:
       - guac-db-data:/var/lib/mysql
     networks:
@@ -34,9 +33,8 @@ services:
       - MYSQL_HOSTNAME=guacdb
       - MYSQL_DATABASE=guacamole_db
       - MYSQL_USER=guacamole_user
+      - MYSQL_PASSWORD=MariaDBUserPass
       # - TOTP_ENABLE=true
-      # Secrets to set in environment:
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
     depends_on:
       - guacdb
       - guacd
