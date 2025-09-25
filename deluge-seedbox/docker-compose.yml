@@ -27,17 +27,15 @@ services:
     environment:                # Review https://github.com/bubuntux/nordvpn#environment-variables
       - TECHNOLOGY=NordLynx
       - NETWORK=192.168.0.0/16  # So it can be accessed within the local network
+      # Secrets to set in environment:
+      - TOKEN=$TOKEN
+      - CONNECT=$CONNECT
     ports:
       - 8112:8112
       - 58846:58846
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1  # Recomended if using ipv4 only
     restart: unless-stopped
-    env_file:
-      - path: stack.env
-        required: false
-    # Secret environment variables to set:
-    # TOKEN, CONNECT
 
   deluge:
     image: lscr.io/linuxserver/deluge:latest

@@ -11,12 +11,14 @@ services:
       # - '21:21' # FTP
     environment:
       # Mysql/Maria connection parameters:
-      DB_MYSQL_HOST: "db"
-      DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_NAME: "npm"
+      - DB_MYSQL_HOST=db
+      - DB_MYSQL_PORT=3306
+      - DB_MYSQL_USER=npm
+      - DB_MYSQL_NAME=npm
       # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
+      # - DISABLE_IPV6='true'
+      # Secrets to set in environment:
+      - DB_MYSQL_PASSWORD=$DB_MYSQL_PASSWORD
     volumes:
       - data:/data
       - letsencrypt:/etc/letsencrypt
@@ -24,28 +26,21 @@ services:
       - db
     networks:
       - web_bridge
-    env_file:
-      - path: stack.env
-        required: false
-    # Secret environment variables to set:
-    # DB_MYSQL_PASSWORD
 
   db:
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: 'npm'
-      MYSQL_USER: 'npm'
-      MARIADB_AUTO_UPGRADE: '1'
+      - MYSQL_DATABASE=npm
+      - MYSQL_USER=npm
+      - MARIADB_AUTO_UPGRADE=1
+      # Secrets to set in environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
     volumes:
       - mysql:/var/lib/mysql
     networks:
       - web_bridge
-    env_file:
-      - path: stack.env
-        required: false
-    # Secret environment variables to set:
-    # MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD
 
 volumes:
   data:

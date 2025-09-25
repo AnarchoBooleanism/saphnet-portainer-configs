@@ -1,7 +1,7 @@
 ## Deluge Seedbox
 A torrent client for file sharing, behind a VPN, and an SFTP server for accessing these files.
 
-When deploying in Portainer, make sure to add a `stack.env` file for secrets with these variables set:
+When deploying in Portainer, make sure to set these environmental variables with your secrets:
 - `TOKEN` - NordVPN token for account login
 - `CONNECT` - Name of NordVPN server to connect to
 

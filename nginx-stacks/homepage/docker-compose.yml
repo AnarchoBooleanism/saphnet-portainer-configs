@@ -20,6 +20,19 @@ services:
     container_name: homepage
     environment:
       - HOMEPAGE_ALLOWED_HOSTS=homepage.int.saphnet.xyz
+      # Secrets to set in environment:
+      - HOMEPAGE_VAR_PROXMOX_USERNAME=$HOMEPAGE_VAR_PROXMOX_USERNAME
+      - HOMEPAGE_VAR_PROXMOX_PASSWORD=$HOMEPAGE_VAR_PROXMOX_PASSWORD
+      - HOMEPAGE_VAR_TRUENAS_API_KEY=$HOMEPAGE_VAR_TRUENAS_API_KEY
+      - HOMEPAGE_VAR_PORTAINER_API_KEY=$HOMEPAGE_VAR_PORTAINER_API_KEY
+      - HOMEPAGE_VAR_HA_API_KEY=$HOMEPAGE_VAR_HA_API_KEY
+      - HOMEPAGE_VAR_FAH_USERNAME=$HOMEPAGE_VAR_FAH_USERNAME
+      - HOMEPAGE_VAR_JELLYFIN_API_KEY=$HOMEPAGE_VAR_JELLYFIN_API_KEY
+      - HOMEPAGE_VAR_RADARR_API_KEY=$HOMEPAGE_VAR_RADARR_API_KEY
+      - HOMEPAGE_VAR_JACKETT_PASSWORD=$HOMEPAGE_VAR_JACKETT_PASSWORD
+      - HOMEPAGE_VAR_DELUGE_PASSWORD=$HOMEPAGE_VAR_DELUGE_PASSWORD
+      - HOMEPAGE_VAR_NPM_INT_USERNAME=$HOMEPAGE_VAR_NPM_INT_USERNAME
+      - HOMEPAGE_VAR_NPM_INT_PASSWORD=$HOMEPAGE_VAR_NPM_INT_PASSWORD
 #    ports:
 #      - 3000:3000
     volumes:
@@ -29,10 +42,6 @@ services:
     networks:
       - web_bridge
     restart: unless-stopped
-    env_file:
-      - path: stack.env
-        required: false
-    # Secret environment variables to set are listed in the `saphnet-homepage` repo.
 
 volumes:
   config:
