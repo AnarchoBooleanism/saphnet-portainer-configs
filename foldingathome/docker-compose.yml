@@ -20,7 +20,8 @@ services:
           cpus: '3.2'
     restart: unless-stopped
     env_file:
-      - stack.env
+      - path: stack.env
+        required: false
     # Secret environment variables to set:
     # ACCOUNT_TOKEN
 
