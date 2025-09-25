@@ -20,7 +20,7 @@ services:
           cpus: '3.2'
     restart: unless-stopped
     env_file:
-      - foldingathome.env
+      - stack.env
     # Secret environment variables to set:
     # ACCOUNT_TOKEN
 

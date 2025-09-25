@@ -11,7 +11,7 @@ services:
     networks:
       - web_bridge
     env_file:
-      - guacamole.env
+      - stack.env
     # Secret environment variables to set:
     # MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD
 
@@ -40,7 +40,7 @@ services:
       - guacdb
       - guacd
     env_file:
-      - guacamole.env
+      - stack.env
     # Secret environment variables to set:
     # MYSQL_PASSWORD
 
