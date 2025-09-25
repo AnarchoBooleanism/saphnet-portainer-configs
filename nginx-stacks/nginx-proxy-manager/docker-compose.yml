@@ -31,12 +31,12 @@ services:
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=npm
-      - MYSQL_USER=npm
-      - MARIADB_AUTO_UPGRADE=1
+      MYSQL_DATABASE: "npm"
+      MYSQL_USER: "npm"
+      MARIADB_AUTO_UPGRADE: "1"
       # Secrets to set in environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
     volumes:
       - mysql:/var/lib/mysql
     networks:
