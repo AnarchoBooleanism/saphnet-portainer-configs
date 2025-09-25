@@ -9,7 +9,7 @@ services:
       - MACHINE_NAME=debian-docker-vm-main
       - CLI_ARGS= #optional
     volumes:
-      - foldingathome:/config # /home/docker-vm-user/foldingathome/config:/config
+      - foldingathome:/config
     ports:
       - 7396:7396 #optional
     devices:
@@ -27,4 +27,3 @@ services:
 
 volumes:
   foldingathome:
-    external: true
