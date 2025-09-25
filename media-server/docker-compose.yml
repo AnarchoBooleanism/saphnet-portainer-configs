@@ -57,15 +57,7 @@ services:
 volumes:
   seedbox-files:
   jellyfin-config:
-    driver_opts:
-      type: "nfs"
-      o: "addr=nas1.int-net.saphnet.xyz,nolock,soft,rw,nfsvers=4"
-      device: ":/mnt/saphnet-nas1b/media-server/jellyfin/config"
   jellyfin-cache:
-    driver_opts:
-      type: "nfs"
-      o: "addr=nas1.int-net.saphnet.xyz,nolock,soft,rw,nfsvers=4"
-      device: ":/mnt/saphnet-nas1b/media-server/jellyfin/cache"
   jackett-config:
   radarr-config:
   media-server-movies:
