@@ -3,7 +3,7 @@ services:
     image: ghcr.io/anarchobooleanism/docker-volume-rclone:main
     environment:
       - TARGET_SUBDIR_NAME=docker-main-pve3
-      - RUN_ON_STARTUP=TRUE # temporary
+      - RUN_ON_STARTUP=FALSE
       - CRON_ARGUMENTS=30 * * * * # The 30th minute of every hour
       # - RCLONE_OPTIONS=
       - TZ=America/Los_Angeles
