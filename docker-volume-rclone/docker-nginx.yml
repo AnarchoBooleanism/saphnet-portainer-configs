@@ -8,7 +8,7 @@ services:
       # - RCLONE_OPTIONS=
       - TZ=America/Los_Angeles
     volumes:
-      - portainer-server_portainer_data:/volumes/portainer-server_portainer_data:ro
+      - filestash_filestash:/volumes/filestash_filestash:ro
       - guacamole-guac-db-data:/volumes/guacamole-guac-db-data:ro
       - nginx-proxy-manager_mysql:/volumes/nginx-proxy-manager_mysql:ro
       - nginx-proxy-manager_letsencrypt:/volumes/nginx-proxy-manager_letsencrypt:ro
