@@ -1,6 +1,6 @@
 services:
   docker-proxy:
-    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    image: ghcr.io/tecnativa/docker-socket-proxy:v0.4.1
     container_name: docker-proxy
     environment:
       - CONTAINERS=1 # Allow access to viewing containers
@@ -16,7 +16,7 @@ services:
       - web_bridge
 
   homepage:
-    image: ghcr.io/anarchobooleanism/saphnet-homepage:main
+    image: ghcr.io/anarchobooleanism/saphnet-homepage@sha256:ea517cf55d6c04011b4ccfba6973f12e9246fe548e031249826d912fcb2a63ef
     container_name: homepage
     environment:
       - HOMEPAGE_ALLOWED_HOSTS=homepage.int.saphnet.xyz

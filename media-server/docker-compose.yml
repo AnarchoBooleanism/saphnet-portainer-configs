@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:latest
+    image: jellyfin/jellyfin:10.11.2
     container_name: jellyfin
     # user: uid:gid # Going rootless
     network_mode: 'host'
@@ -24,7 +24,7 @@ services:
       - 'host.docker.internal:host-gateway'
 
   jackett:
-    image: lscr.io/linuxserver/jackett:latest
+    image: lscr.io/linuxserver/jackett:0.24.314
     container_name: jackett
     environment:
       - PUID=1000
@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
     
   radarr:
-    image: lscr.io/linuxserver/radarr:latest
+    image: lscr.io/linuxserver/radarr:5.28.0
     container_name: radarr
     environment:
       - PUID=1000

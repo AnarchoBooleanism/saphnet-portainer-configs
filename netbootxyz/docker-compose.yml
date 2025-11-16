@@ -1,6 +1,6 @@
 services:
   netbootxyz:
-    image: ghcr.io/netbootxyz/netbootxyz:latest
+    image: ghcr.io/netbootxyz/netbootxyz:0.7.6-nbxyz10
     container_name: netbootxyz
     environment:
       - NGINX_PORT=80 # optional

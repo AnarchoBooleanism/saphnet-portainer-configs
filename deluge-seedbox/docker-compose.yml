@@ -19,7 +19,7 @@ services:
   #     - net_admin
   #   restart: unless-stopped
   vpn:
-    image: ghcr.io/bubuntux/nordvpn:latest
+    image: ghcr.io/bubuntux/nordvpn@sha256:ac521b5a8d1387780d812a0ed46dd23aa3ee5e47d6d9f9eace39213ea1f56509
     container_name: vpn
     cap_add:
       - NET_ADMIN               # Required
@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
 
   deluge:
-    image: lscr.io/linuxserver/deluge:latest
+    image: lscr.io/linuxserver/deluge:2.2.0
     container_name: deluge
     environment:
       - PUID=1000
@@ -54,7 +54,7 @@ services:
       - vpn
 
   deluge-sftp:
-    image: emberstack/sftp
+    image: emberstack/sftp:build-5.1.72
     container_name: deluge-sftp
     volumes:
       - sftp-config:/app/config

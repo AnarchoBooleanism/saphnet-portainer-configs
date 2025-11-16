@@ -5,9 +5,13 @@
 
 version: 2
 updates:
-  - package-ecosystem: "docker-compose" # See documentation for possible values
+  - package-ecosystem: "github-actions" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker-compose"
     directories:
-      - "/deluge-seedbox/" # Location of package manifests
+      - "/deluge-seedbox/"
       - "/docker-proxy/"
       - "/docker-volume-rclone/"
       - "/foldingathome/"

@@ -5,7 +5,7 @@ services:
     ports:
       - '3000:3000'
       - '3001:3001'
-    image: openspeedtest/latest
+    image: openspeedtest/latest:v2.0.6
     networks:
       - web_bridge
 

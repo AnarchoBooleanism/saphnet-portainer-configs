@@ -1,6 +1,6 @@
 services:
   docker-volume-rclone:
-    image: ghcr.io/anarchobooleanism/docker-volume-rclone:main
+    image: ghcr.io/anarchobooleanism/docker-volume-rclone@sha256:f477a83b3a045a90c1bdcf909f545027b8cfbe7068c169d2e352652f5ab72dcd
     environment:
       - TARGET_SUBDIR_NAME=docker-main-pve3
       - RUN_ON_STARTUP=FALSE

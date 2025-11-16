@@ -1,7 +1,7 @@
 services:
   app:
     container_name: filestash
-    image: machines/filestash:latest
+    image: machines/filestash@sha256:8e2f58b07efd5f88e6ade8e1bc15268fc7103183995dd28cd498ebac40a5b02e
     restart: unless-stopped
     environment:
     - APPLICATION_URL=filestash.int.saphnet.xyz
@@ -17,7 +17,7 @@ services:
 
   wopi_server:
     container_name: filestash_wopi
-    image: collabora/code:latest
+    image: collabora/code:25.04.7.1.1
     restart: unless-stopped
     environment:
     - "extra_params=--o:ssl.enable=false"
