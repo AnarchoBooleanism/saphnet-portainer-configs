@@ -25,3 +25,4 @@ jobs:
         with:
           recursive: true
           exclude: .github
+        continue-on-error: true
