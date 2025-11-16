@@ -1,5 +1,5 @@
-# saphnet-portainer-configs
-A set of configuration files for different Portainer stacks for Portainer to pull from and run
+# saphnet-compose-configs
+A set of configuration files for different Docker Compose stacks for Komodo to pull from and run
 
 ## Where to deploy each stack
 
